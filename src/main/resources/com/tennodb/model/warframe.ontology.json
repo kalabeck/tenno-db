@@ -1,0 +1,173 @@
+{
+	"$schema": "schema.json",
+	"ontology_version": "1.0",
+
+	"dataTypes": {
+		"ITEM": {
+			"parentType": null,
+			"concrete": false,
+			"properties": {
+				"name": "String"
+			}
+		},
+
+		"EQUIPPABLE": {
+			"parentType": "ITEM",
+			"concrete": false,
+			"properties": {
+				"mastery": "Integer",
+				"polarites": "PolarityEnum",
+				"released": "Date",
+			}
+		},
+
+		"RESOURCE": {
+			"parentType": "ITEM",
+			"concrete": true,
+			"properties": {
+				"type": "String"
+			}
+		},
+
+		"COMPONENT": {
+			"parentType": "ITEM",
+			"concrete": true,
+			"properties": {
+				"type": "String"
+			}
+		},
+
+		"PRIME": {
+			"parentType": "ITEM",
+			"concrete": false,
+			"properties" : {
+				"ducat_value": "Integer",
+				"vaulted": "Date"
+			}
+		},
+
+		"WARFRAME": {
+			"parentType": "EQUIPPABLE",
+			"concrete": true,
+			"properties": {
+				"health": "Integer",
+				"shield": "Integer",
+				"armor": "Integer",
+				"energy": "Integer",
+				"sprint_speed": "Float",
+				"aura": "PolarityEnum",
+				"exilus": "PolarityEnum"
+			}
+		},
+
+		"WEAPON": {
+			"parentType": "EQUIPPABLE",
+			"concrete": false,
+			"properties": {
+				"disposition": "DispositionEnum",
+				"crit_chance": "Float",
+				"crit_multiplier": "Float",
+				"damage_impact": "Float",
+				"damage_puncture": "Float",
+				"damage_slash": "Float",
+				"status_chance": "Float",
+				"damage_cold": "Float",
+				"damage_electric": "Float",
+				"damage_fire": "Float",
+				"damage_toxic": "Float"
+			}
+		},
+
+		"GUN": {
+			"parentType": "WEAPON",
+			"concrete": false,
+			"properties": {
+				"trigger": "TriggerTypeEnum",
+				"ammo_type": "AmmoTypeEnum",
+				"noise": "NoiseEnum",
+				"fire_rate": "Float",
+				"accuracy": "Integer",
+				"magazine_size": "Integer",
+				"max_ammo": "Integer",
+				"reload_speed": "Float"
+			}
+		},
+
+		"PRIMARY": {
+			"parentType": "GUN",
+			"concrete": true,
+			"properties": {
+				"type": "PrimaryTypeEnum"
+			}
+		},
+
+		"SECONDARY": {
+			"parentType": "GUN",
+			"concrete": true,
+			"properties": {
+				"type": "SecondaryTypeEnum"
+			}
+		},
+
+		"MELEE": {
+			"parentType": "WEAPON",
+			"concrete": true,
+			"properties": {
+				"class": "MeleeClassEnum",
+				""
+			}
+		},
+
+		"COMPANION": {
+			"parentType": "EQUIPPABLE",
+			"concrete": false,
+			"properties": {
+				"health": "Integer",
+				"shield": "Integer",
+				"armor": "Integer",
+				"power": "Integer",
+				"polarities": "PolarityEnum"
+			}
+		},
+
+		"SENTINEL": {
+			"parentType": "COMPANION",
+			"concrete": true,
+			"properties": {
+				
+			}
+		},
+
+		"ANIMAL": {
+			"parentType": "COMPANION",
+			"concrete": true,
+			"properties": {
+				"damage_slash": "Integer"
+			}
+		}
+	},
+
+	"linkRules": {
+		"PART_OF": {
+			"sourceType": "COMPONENT",
+			"destinationType": "EQUIPPABLE",
+			"properties": {}
+		},
+
+		"DROPS": {
+			"sourceType": "RELIC",
+			"destinationType": "COMPONENT",
+			"properties": {
+				"rarity": "RarityEnum"
+			}
+		},
+
+		"REQUIRES": {
+			"sourceType": "COMPONENT",
+			"destinationType": "ITEM",
+			"properties": {
+				"quantity": "Integer"
+			}
+		}
+	}
+}
